@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:paddingLeft="16dp">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/item_talk_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_toLeftOf="@+id/item_talk_favorite"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        tools:text="This is the talk title" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/item_talk_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/item_talk_title"
+        android:layout_below="@+id/item_talk_title"
+        tools:text="10h00 - 10h45" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/item_talk_authors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/item_talk_title"
+        android:layout_below="@+id/item_talk_schedule"
+        android:layout_marginBottom="16dp"
+        tools:text="François Lolom, Renaud Boulard" />
+
+    <ImageView
+        android:id="@+id/item_talk_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:padding="16dp"
+        tools:src="@drawable/ic_talk_favorite" />
+
+</RelativeLayout>

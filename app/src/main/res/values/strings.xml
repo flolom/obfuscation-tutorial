@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">TechForum Obfuscation Sample</string>
+
+    <string name="talk_schedule">%1$s  - %2$s</string>
+
+    <string name="bottombar_talks">Talks</string>
+    <string name="bottombar_favorites">Favorites</string>
+    <string name="bottombar_about">About</string>
+    <string name="about_flolom_name">François Lolom</string>
+    <string name="about_flolom_description">Android developer at equens Worldline Company</string>
+    <string name="about_rboulard_name">Renaud Boulard</string>
+    <string name="about_rboulard_description">Android developer at equens Worldline Company</string>
+    <string name="about_title">About us</string>
+</resources>
