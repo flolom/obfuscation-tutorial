@@ -10,11 +10,34 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+
+        // Android default proguard file
+        proguardFiles getDefaultProguardFile('proguard-android.txt')
+
+        // Libraries proguard files
+        //
+        // Firstly, I have to find all the libraries that are used by my application, even the transitive libraries
+        // I can find them by typing the following command: './gradlew :app:dependencies'. I can filter the output,
+        // by searching only the build variant that I'm interested in : 'releaseCompile'
+        //
+        // Secondly, I have to import the proguard configuration of each of those libraries, if any.
+        // I can find them by going to the website of each concerned project, or by creating them myself,
+        // if I'm experienced enough with proguard.
+        // There is also a project that references the most common android libraries in one github repository :
+        // https://github.com/krschultz/android-proguard-snippets
+        //
+        // Then I add each library one by one in my build.gradle file, for better maintainability and readability.
+
+        proguardFiles 'proguard/proguard-butterknife-7.pro'
+        proguardFiles 'proguard/proguard-square-okhttp3.pro'
+        proguardFiles 'proguard/proguard-square-retrofit2.pro'
+        proguardFiles 'proguard/proguard-support-v7-appcompat.pro'
+        proguardFiles 'proguard/proguard-square-okio.pro'
+
     }
     buildTypes {
         release {
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
             // apply the debug signing config for release, to make testing easier for us
             signingConfig signingConfigs.debug
