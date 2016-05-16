@@ -14,10 +14,15 @@ android {
         versionName "1.0"
 
         // Android default proguard file
-        proguardFiles getDefaultProguardFile('proguard-android.txt')
+        //
+        // the optimized version is needed, otherwise the proguard repackaging feature will not be enabled.
+        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
 
         // My library proguard file
         proguardFiles 'proguard/proguard-library.pro'
+
+        // Proguard files that the application using my sdk will need
+        consumerProguardFiles 'proguard/proguard-library-consumer.pro'
 
     }
     buildTypes {
