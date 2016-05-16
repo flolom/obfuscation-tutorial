@@ -5,6 +5,9 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
+
+        publishNonDefault true
+
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
@@ -12,7 +15,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

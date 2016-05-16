@@ -50,7 +50,8 @@ android {
 
 dependencies {
 
-    compile project(':library')
+    debugCompile   project(path: ':library', configuration: 'debug')
+    releaseCompile project(path: ':library', configuration: 'release')
 
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.jakewharton:butterknife:7.0.1'
