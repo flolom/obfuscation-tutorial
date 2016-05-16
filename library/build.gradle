@@ -21,8 +21,19 @@ android {
         // My library proguard file
         proguardFiles 'proguard/proguard-library.pro'
 
+        // apply third party proguard files on the project (for example to keep retrofit annotations)
+        proguardFiles 'proguard/proguard-square-okhttp3.pro'
+        proguardFiles 'proguard/proguard-square-retrofit2.pro'
+        proguardFiles 'proguard/proguard-square-okio.pro'
+
         // Proguard files that the application using my sdk will need
         consumerProguardFiles 'proguard/proguard-library-consumer.pro'
+
+        // Proguard files of the dependencies of my SDK
+        // All the applications using my SDK and proguard will require these files.
+        consumerProguardFiles 'proguard/proguard-square-okhttp3.pro'
+        consumerProguardFiles 'proguard/proguard-square-retrofit2.pro'
+        consumerProguardFiles 'proguard/proguard-square-okio.pro'
 
     }
     buildTypes {

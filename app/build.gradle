@@ -29,10 +29,7 @@ android {
         // Then I add each library one by one in my build.gradle file, for better maintainability and readability.
 
         proguardFiles 'proguard/proguard-butterknife-7.pro'
-        proguardFiles 'proguard/proguard-square-okhttp3.pro'
-        proguardFiles 'proguard/proguard-square-retrofit2.pro'
         proguardFiles 'proguard/proguard-support-v7-appcompat.pro'
-        proguardFiles 'proguard/proguard-square-okio.pro'
 
         // My Application proguard file
         proguardFiles 'proguard/proguard-app.pro'
