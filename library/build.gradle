@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: "android-apt"
 
 android {
     compileSdkVersion 23
@@ -25,6 +26,7 @@ android {
         proguardFiles 'proguard/proguard-square-okhttp3.pro'
         proguardFiles 'proguard/proguard-square-retrofit2.pro'
         proguardFiles 'proguard/proguard-square-okio.pro'
+        proguardFiles 'proguard/proguard-immutables.pro'
 
         // Proguard files that the application using my sdk will need
         consumerProguardFiles 'proguard/proguard-library-consumer.pro'
@@ -34,6 +36,7 @@ android {
         consumerProguardFiles 'proguard/proguard-square-okhttp3.pro'
         consumerProguardFiles 'proguard/proguard-square-retrofit2.pro'
         consumerProguardFiles 'proguard/proguard-square-okio.pro'
+        consumerProguardFiles 'proguard/proguard-immutables.pro'
 
     }
     buildTypes {
@@ -44,6 +47,11 @@ android {
 }
 
 dependencies {
+
+    // pojo generator
+    apt "org.immutables:value:2.1.19"
+    provided "org.immutables:value:2.1.19"
+    provided "org.immutables:gson:2.1.19"
 
     // metadata for API consumers
     compile 'com.android.support:support-annotations:23.3.0'

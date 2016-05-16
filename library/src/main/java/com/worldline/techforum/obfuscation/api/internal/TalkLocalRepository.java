@@ -26,12 +26,12 @@ class TalkLocalRepository {
 
     private static final Type TYPE_LIST_TALK = new TypeToken<List<Talk>>() {}.getType();
 
-    private SharedPreferences sharedPreferences;
-    private Gson gson;
+    private final SharedPreferences sharedPreferences;
+    private final Gson gson;
 
-    public TalkLocalRepository(Context context) {
+    public TalkLocalRepository(Context context, Gson gson) {
         this.sharedPreferences = context.getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
-        this.gson = new Gson();
+        this.gson = gson;
     }
 
     public void setTalkList(List<Talk> talks) {

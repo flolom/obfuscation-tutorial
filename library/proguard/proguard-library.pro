@@ -16,15 +16,9 @@
 
 # Implementation proguard rules
 
+# no need to keep the network model anymore: the serialization code is now generated at the compile
+# time, instead of performing class inspection at runtime
 
-# We keep the fields of all the classes contained in the network model package:
-#
-# This way, gson can access by the reflection the fields of our model, and performs the serialization
-# operations correcly.
-#
--keepclassmembernames class com.worldline.techforum.obfuscation.api.internal.model.** {
-    <fields>;
-}
 
 # we repackage all our 'implementation' classes into one and only one package
 -repackageclasses com.worldline.techforum.obfuscation.api.internal

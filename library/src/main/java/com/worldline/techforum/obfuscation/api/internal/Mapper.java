@@ -27,7 +27,7 @@ final class Mapper {
         List<String> authorsTalkList = new ArrayList<>();
 
         // map authors
-        String authors = session.getAuthor();
+        String authors = session.author();
 
         if (authors != null) {
             String[] authorsSpitted = authors.split(",");
@@ -35,12 +35,12 @@ final class Mapper {
         }
 
         // map talk start and endDate
-        if (session.getWhen() != null) {
-            startAt = session.getWhen().getStart();
-            endAt   = session.getWhen().getEnd();
+        if (session.when() != null) {
+            startAt = session.when().start();
+            endAt   = session.when().end();
         }
 
-        return new Talk(session.getId(), session.getTitle(), startAt, endAt, authorsTalkList);
+        return new Talk(session._id(), session.title(), startAt, endAt, authorsTalkList);
     }
 
 }
