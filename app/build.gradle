@@ -12,7 +12,20 @@ android {
         versionName "1.0"
 
         // Android default proguard file
-        proguardFiles getDefaultProguardFile('proguard-android.txt')
+        //
+        // To work, the repackaging feature requires that proguard optimization feature is enabled.
+        // However, activating optimization might break the build (this was the case here).
+        //
+        // We came with the following solution : copy and paste the 'tools/proguard/proguard-android-optimize.txt'
+        // file from the android SDK, and disable the feature that breaks the build (in our case, the '-allowaccessmodification'
+        // option, that gson didn't support well)
+        //
+        // /!\ Warning /!\
+        //
+        // Using 'getDefaultProguardFile' will automatically update the default proguard configuration with the updates
+        // of the SDK. This won't be the case now, so Don't forget to update this file when it is changed by the android team.
+        //
+        proguardFiles 'proguard/proguard-android-optimize-workaround.pro'
 
         // Libraries proguard files
         //
