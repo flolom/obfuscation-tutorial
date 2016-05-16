@@ -21,6 +21,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 /**
  * Created by Francois Lolom on 07/05/2016.
@@ -98,7 +99,7 @@ public class TalksFragment extends BottomBarFragment implements SwipeRefreshLayo
 
         // first, load data from the cache, in the main thread
         try {
-            Log.d(TAG, "Loading all talks from cache");
+            Timber.d("Loading all talks from cache");
 
             List<Talk> talksCached = techForumApi.retrieveAllTalks(true);
 
@@ -108,16 +109,16 @@ public class TalksFragment extends BottomBarFragment implements SwipeRefreshLayo
                 talkAdapter.setTalkList(talksCached);
             }
 
-            Log.d(TAG, "List loaded with success, with " + talksCached.size() + " elements");
+            Timber.d("List loaded with success, with %d elements", talksCached.size());
         } catch (IOException e) {
-            Log.e(TAG, "Error while loading talks from cache", e);
+            Timber.e(e, "Error while loading talks from cache");
         }
 
 
     }
 
     private void loadFavoriteTalks(boolean updateAdapter) {
-        Log.d(TAG, "Loading favorites talks");
+        Timber.d("Loading favorites talks");
 
         favoriteTalks = techForumApi.retrieveFavoriteTalks();
 
@@ -125,7 +126,7 @@ public class TalksFragment extends BottomBarFragment implements SwipeRefreshLayo
             talkAdapter.setTalkList(favoriteTalks);
         }
 
-        Log.d(TAG, "List loaded with success, with " + favoriteTalks.size() + " elements");
+        Timber.d("List loaded with success, with %d elements", favoriteTalks.size());
 
         swipeRefreshLayout.setRefreshing(false);
     }
@@ -145,17 +146,17 @@ public class TalksFragment extends BottomBarFragment implements SwipeRefreshLayo
                     @Override
                     protected List<Talk> doInBackground(Void... params) {
 
-                        Log.d(TAG, "Loading all talks from network");
+                        Timber.d("Loading all talks from network");
 
                         try {
                             List<Talk> talks = techForumApi.retrieveAllTalks(false);
 
-                            Log.d(TAG, "List loaded with success, with " + talks.size() + " elements");
+                            Timber.d("List loaded with success, with %d elements", talks.size());
 
                             return talks;
 
                         } catch (IOException e) {
-                            Log.e(TAG, "Error while loading talks from network", e);
+                            Timber.e(e, "Error while loading talks from network");
                             return null;
                         }
 
