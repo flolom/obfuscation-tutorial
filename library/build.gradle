@@ -12,11 +12,17 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+
+        // Android default proguard file
+        proguardFiles getDefaultProguardFile('proguard-android.txt')
+
+        // My library proguard file
+        proguardFiles 'proguard/proguard-library.pro'
+
     }
     buildTypes {
         release {
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
