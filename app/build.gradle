@@ -51,9 +51,26 @@ android {
     buildTypes {
         release {
             minifyEnabled true
+            debuggable false
+
+            // remove logs only for the real production build
+            proguardFiles 'proguard/proguard-no-logs.pro'
 
             // apply the debug signing config for release, to make testing easier for us
             signingConfig signingConfigs.debug
+        }
+
+        logged {
+            minifyEnabled true
+            debuggable false
+
+            // apply the debug signing config for release, to make testing easier for us
+            signingConfig signingConfigs.debug
+        }
+
+        debug {
+            minifyEnabled false
+            debuggable true
         }
     }
 
@@ -64,8 +81,9 @@ android {
 
 dependencies {
 
-    debugCompile   project(path: ':library', configuration: 'debug')
-    releaseCompile project(path: ':library', configuration: 'release')
+    debugCompile    project(path: ':library', configuration: 'debug')
+    loggedCompile   project(path: ':library', configuration: 'release')
+    releaseCompile  project(path: ':library', configuration: 'release')
 
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.jakewharton:butterknife:7.0.1'
