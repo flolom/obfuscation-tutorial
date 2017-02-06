@@ -44,14 +44,17 @@ android {
             minifyEnabled true
         }
     }
+
+
 }
 
 dependencies {
 
-    // pojo generator
-    apt "org.immutables:value:2.1.19"
-    provided "org.immutables:value:2.1.19"
-    provided "org.immutables:gson:2.1.19"
+    // AutoValue
+    compile 'com.google.auto.value:auto-value:1.3'
+    compile 'com.google.code.gson:gson:2.8.0'
+    apt 'com.ryanharter.auto.value:auto-value-gson:0.4.6'
+    provided 'com.ryanharter.auto.value:auto-value-gson:0.4.6'
 
     // metadata for API consumers
     compile 'com.android.support:support-annotations:23.3.0'
