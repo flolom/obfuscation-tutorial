@@ -26,7 +26,6 @@ android {
         proguardFiles 'proguard/proguard-square-okhttp3.pro'
         proguardFiles 'proguard/proguard-square-retrofit2.pro'
         proguardFiles 'proguard/proguard-square-okio.pro'
-        proguardFiles 'proguard/proguard-immutables.pro'
 
         // Proguard files that the application using my sdk will need
         consumerProguardFiles 'proguard/proguard-library-consumer.pro'
@@ -36,7 +35,6 @@ android {
         consumerProguardFiles 'proguard/proguard-square-okhttp3.pro'
         consumerProguardFiles 'proguard/proguard-square-retrofit2.pro'
         consumerProguardFiles 'proguard/proguard-square-okio.pro'
-        consumerProguardFiles 'proguard/proguard-immutables.pro'
 
     }
     buildTypes {
@@ -51,7 +49,8 @@ android {
 dependencies {
 
     // AutoValue
-    compile 'com.google.auto.value:auto-value:1.3'
+    provided 'com.google.auto.value:auto-value:1.3'
+    apt 'com.google.auto.value:auto-value:1.3'
     compile 'com.google.code.gson:gson:2.8.0'
     apt 'com.ryanharter.auto.value:auto-value-gson:0.4.6'
     provided 'com.ryanharter.auto.value:auto-value-gson:0.4.6'
