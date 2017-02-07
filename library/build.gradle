@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: "android-apt"
+apply plugin: 'maven'
 
 android {
     compileSdkVersion 23
@@ -8,11 +9,12 @@ android {
     defaultConfig {
 
         publishNonDefault true
+        defaultPublishConfig 'release'
 
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
-        versionName "1.0"
+        versionName VERSION_NAME
 
         // Android default proguard file
         //
@@ -69,4 +71,58 @@ dependencies {
     testCompile "org.robolectric:robolectric:3.0"
     testCompile 'junit:junit:4.12'
     testCompile 'com.squareup.okhttp3:mockwebserver:3.2.0'
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+
+            // Replace this with your maven repository
+            repository(url: "file:///${buildDir}/deploy/")
+            pom.groupId = GROUP
+            pom.artifactId = POM_ARTIFACT_ID
+            pom.version = VERSION_NAME
+            pom.project {
+                name POM_NAME
+                packaging POM_PACKAGING
+            }
+        }
+    }
+}
+
+afterEvaluate { project ->
+
+    // Android publishNonDefault will package all the variant in the output. To prevent this behavior, we must remove the default artifacts
+    // and manually package the defaultPublishConfig, which is the variant that we want to package
+
+    // removing the default behavior
+    configurations.archives.artifacts.removeAll { true }
+
+    android.libraryVariants.all { variant ->
+
+        // defaultPublishConfig found
+        if (variant.name == android.defaultPublishConfig) {
+
+            def bundleTask = tasks["bundle${name.capitalize()}"]
+
+            // add the .aar file in the output
+            artifacts {
+                archives(bundleTask.archivePath) {
+                    classifier null
+                    builtBy bundleTask
+                }
+            }
+
+            // Add the mapping file of proguard in the output, if any
+            File mappingFile = variant.getMappingFile();
+            if (mappingFile != null) {
+                artifacts {
+                    archives(mappingFile) {
+                        classifier "mapping"
+                        builtBy bundleTask
+                    }
+                }
+            }
+        }
+    }
 }
